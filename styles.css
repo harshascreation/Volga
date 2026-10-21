@@ -1,0 +1,166 @@
+:root {
+  color-scheme: dark;
+  font-family: "Segoe UI", sans-serif;
+  background: #101a18;
+  color: #f1f5ed;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 64px 24px;
+  background:
+    radial-gradient(ellipse at 12% 8%, rgba(61, 143, 111, 0.24), transparent 36rem),
+    #101a18;
+  color: #f1f5ed;
+}
+
+header,
+main {
+  width: min(100%, 960px);
+  margin: 0 auto;
+}
+
+header {
+  padding: 48px;
+  border: 1px solid #324840;
+  border-radius: 24px;
+  background: #182722;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
+}
+
+h1 {
+  margin: 0;
+  color: #e7f2e8;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  letter-spacing: -0.06em;
+  text-align: left;
+}
+
+.tagline {
+  margin: 8px 0 28px;
+  color: #b8c9be;
+  font-size: 1.05rem;
+}
+
+#search-form {
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+#search-input {
+  width: min(100%, 560px);
+  min-width: 0;
+  padding: 15px 18px;
+  border: 1px solid #587164;
+  border-radius: 12px;
+  outline: none;
+  background: #101a18;
+  color: #f1f5ed;
+  font: inherit;
+}
+
+#search-input:focus {
+  border-color: #a8d5a2;
+  box-shadow: 0 0 0 3px rgba(168, 213, 162, 0.18);
+}
+
+#search-input::placeholder {
+  color: #94a79a;
+}
+
+#search-button,
+.suggestion-chip {
+  border: 0;
+  border-radius: 12px;
+  cursor: pointer;
+  font: inherit;
+}
+
+#search-button {
+  padding: 15px 24px;
+  background: #b7dc9e;
+  color: #15231a;
+  font-weight: 700;
+}
+
+main {
+  padding: 28px 8px;
+}
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  color: #b8c9be;
+}
+
+.suggestion-chip {
+  padding: 8px 14px;
+  border: 1px solid #496154;
+  background: #1b2b24;
+  color: #d9e9d7;
+}
+
+.suggestion-chip:hover {
+  border-color: #a8d5a2;
+}
+
+#status {
+  margin: 0 0 12px;
+  color: #b8c9be;
+}
+
+#empty-state {
+  display: grid;
+  min-height: 180px;
+  margin: 0;
+  place-items: center;
+  border: 1px dashed #496154;
+  border-radius: 18px;
+  color: #b8c9be;
+  text-align: center;
+}
+
+#results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@media (max-width: 560px) {
+  body {
+    padding: 24px 16px;
+  }
+
+  header {
+    padding: 28px 20px;
+  }
+
+  #search-form {
+    flex-direction: column;
+  }
+
+  #search-input,
+  #search-button {
+    width: 100%;
+  }
+}
