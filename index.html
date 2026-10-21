@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Volga</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- UI goes here (next block) -->
+
+
+<header>
+  <h1>Volga</h1>
+  <p class="tagline">Find a little inspiration in every image.</p>
+  <form id="search-form">
+    <label class="visually-hidden" for="search-input">Search images by topic</label>
+    <input id="search-input" type="search" placeholder="Search images..." />
+    <button id="search-button" type="submit">Search</button>
+  </form>
+</header>
+
+<main>
+  <nav class="suggestions" aria-label="Popular image searches">
+    <span>Try a topic:</span>
+    <button class="suggestion-chip" type="button">Nature</button>
+    <button class="suggestion-chip" type="button">Architecture</button>
+    <button class="suggestion-chip" type="button">Wildlife</button>
+  </nav>
+  <p id="status">Your image collection will appear here.</p>
+  <p id="empty-state">Search for a topic to discover images.</p>
+  <section id="results"></section>
+</main>
+  <script src="script.js"></script>
+</body>
+</html>
