@@ -3,13 +3,19 @@ const input = document.getElementById("search-input");
 const results = document.getElementById("results");
 const status = document.getElementById("status");
 const emptyState = document.getElementById("empty-state");
+let latestSearchId = 0;
 
 async function searchImages(query) {
+  const searchId = ++latestSearchId;
   const url =
     "https://commons.wikimedia.org/w/api.php?action=query&generator=search" +
     "&gsrsearch=" + encodeURIComponent(query) +
     "&gsrnamespace=6&gsrlimit=12&prop=imageinfo&iiprop=url&iiurlwidth=600&format=json&origin=*";
 
+  results.innerHTML = "";
+  emptyState.hidden = true;
+  status.classList.add("is-loading");
+  status.setAttribute("aria-busy", "true");
   status.textContent = `Searching for "${query}"...`;
 
   try {
@@ -20,10 +26,27 @@ async function searchImages(query) {
 
     const data = await response.json();
     const items = Object.values(data.query?.pages ?? {});
+
+    if (searchId !== latestSearchId) {
+      return;
+    }
+
     renderResults(items, query);
   } catch (error) {
+    if (searchId !== latestSearchId) {
+      return;
+    }
+
+    results.innerHTML = "";
+    emptyState.textContent = "Something went wrong. Please try again.";
+    emptyState.hidden = false;
     status.textContent = "Could not load images. Please try again.";
     console.error(error);
+  } finally {
+    if (searchId === latestSearchId) {
+      status.classList.remove("is-loading");
+      status.setAttribute("aria-busy", "false");
+    }
   }
 }
 
@@ -49,10 +72,18 @@ function renderResults(items, query) {
     results.appendChild(card);
   });
 
-  emptyState.hidden = imageItems.length > 0;
-  status.textContent = imageItems.length
-    ? `Showing ${imageItems.length} results for "${query}".`
-    : `No images found for "${query}". Try another topic.`;
+  status.classList.remove("is-loading");
+  status.setAttribute("aria-busy", "false");
+
+  if (imageItems.length === 0) {
+    emptyState.textContent = `No images found for "${query}". Try another topic.`;
+    emptyState.hidden = false;
+    status.textContent = `No results for "${query}".`;
+    return;
+  }
+
+  emptyState.hidden = true;
+  status.textContent = `Showing ${imageItems.length} results for "${query}".`;
 }
 
 form.addEventListener("submit", (event) => {

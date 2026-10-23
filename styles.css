@@ -119,6 +119,25 @@ main {
   color: #b8c9be;
 }
 
+#status.is-loading::before {
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  margin-right: 8px;
+  border: 2px solid #587164;
+  border-top-color: #b7dc9e;
+  border-radius: 50%;
+  content: "";
+  vertical-align: -0.1em;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 #empty-state {
   display: grid;
   min-height: 180px;
@@ -145,6 +164,18 @@ main {
   border: 1px solid #324840;
   border-radius: 16px;
   background: #182722;
+  animation: card-enter 0.35s ease-out both;
+}
+
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .card img {
@@ -187,5 +218,15 @@ main {
   #search-input,
   #search-button {
     width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

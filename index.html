@@ -27,8 +27,8 @@
     <button class="suggestion-chip" type="button">Architecture</button>
     <button class="suggestion-chip" type="button">Wildlife</button>
   </nav>
-  <p id="status">Your image collection will appear here.</p>
-  <p id="empty-state">Search for a topic to discover images.</p>
+  <p id="status" role="status" aria-live="polite" aria-busy="false">Your image collection will appear here.</p>
+  <p id="empty-state" role="status" aria-live="polite">Search for a topic to discover images.</p>
   <section id="results"></section>
 </main>
   <script src="script.js"></script>
